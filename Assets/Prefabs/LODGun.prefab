@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4014762703784874799}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.869667, y: 0.6, z: 1.14}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -43,22 +43,18 @@ LODGroup:
   serializedVersion: 2
   m_LocalReferencePoint: {x: 0.0000008940697, y: -0.050511748, z: 1.2971494}
   m_Size: 1
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
+  m_FadeMode: 1
+  m_AnimateCrossFading: 1
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.025306514
+  - screenRelativeHeight: 0.021265013
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7580880764284329368}
-  - screenRelativeHeight: 0.010181504
+  - screenRelativeHeight: 0.0051675937
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5470840129698682998}
-  - screenRelativeHeight: 0.004289366
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 5386082790656999595}
   m_Enabled: 1
 --- !u!1001 &8748366685371140196
 PrefabInstance:
@@ -124,20 +120,20 @@ PrefabInstance:
       propertyPath: m_ScaleInLightmap
       value: 0.23253141
       objectReference: {fileID: 0}
+    - target: {fileID: 3640075334152146962, guid: 05c7a11eb756cd249a319ccf5fe36d21, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f6be7af2a3e5a6d448bff813de819f9d, type: 2}
     - target: {fileID: 3735530164883032271, guid: 05c7a11eb756cd249a319ccf5fe36d21, type: 3}
       propertyPath: m_ScaleInLightmap
       value: 0.18710753
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5371824668458441173, guid: 05c7a11eb756cd249a319ccf5fe36d21, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05c7a11eb756cd249a319ccf5fe36d21, type: 3}
---- !u!23 &5386082790656999595 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3735530164883032271, guid: 05c7a11eb756cd249a319ccf5fe36d21, type: 3}
-  m_PrefabInstance: {fileID: 8748366685371140196}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &5470840129698682998 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 3640075334152146962, guid: 05c7a11eb756cd249a319ccf5fe36d21, type: 3}
