@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,9 @@ public class LoadMap : MonoBehaviour
     [SerializeField] List<Transform> positions = new List<Transform>();
     public AssetReferenceGameObject assetRefTracked; // Identify the asset
     List<GameObject> instancesTracked = new List<GameObject>();
+    List<AsyncOperationHandle<GameObject>> handles = new List<AsyncOperationHandle<GameObject>>();
     private IEnumerator Start()
     {
-        List<AsyncOperationHandle<GameObject>> handles = new List<AsyncOperationHandle<GameObject>>();
 
         CreateTurrets(ref handles);
 
@@ -25,7 +26,9 @@ public class LoadMap : MonoBehaviour
         foreach (var h in handles)
         {
             if (h.Status == AsyncOperationStatus.Succeeded)
+            {
                 instancesTracked.Add(h.Result);
+            }
         }
     }
     void CreateTurrets(ref List<AsyncOperationHandle<GameObject>> handles)
@@ -33,19 +36,29 @@ public class LoadMap : MonoBehaviour
         foreach (Transform p in positions)
         {
             var instParams = new InstantiationParameters(p.position, p.rotation * Quaternion.Euler(0, 180, 0), p);
-            handles.Add(Addressables.InstantiateAsync(assetRefTracked, instParams));
+            var newAsset = Addressables.InstantiateAsync(assetRefTracked, instParams);
+            handles.Add(newAsset);
         }
     }
     void ReleaseTrackedResources()
     {
-        foreach (GameObject instances in instancesTracked)
+        foreach (var instance in instancesTracked)
         {
-            Addressables.ReleaseInstance(instances);
+            if (instance == null)
+            {
+                continue;
+            }
+            Addressables.ReleaseInstance(instance);
         }
-    }
-    void OnDestroy()
-    {
-        ReleaseTrackedResources();
+        instancesTracked.Clear();
+
+        //Comprobamos que si hay algun handle que fallo o no se uso se libere
+        foreach (var h in handles)
+        {
+            if (h.IsValid())
+                Addressables.Release(h);
+        }
+        handles.Clear();
     }
     private void OnDisable()
     {
