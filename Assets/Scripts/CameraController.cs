@@ -7,10 +7,6 @@ public class CameraController : MonoBehaviour
     Vector3 movementDirection;
     bool isMoving = false;
     [SerializeField] float speed;
-    void Start()
-    {
-        
-    }
     public void OnMovingCamera(InputAction.CallbackContext onMove)
     {
         if (onMove.performed)
