@@ -16,13 +16,13 @@ public class LoadMap : MonoBehaviour
 
         CreateTurrets(ref handles);
 
-        // Espera a que TODOS terminen
+        //Espera a que todos los handles terminen
         foreach (var h in handles)
         {
             if (!h.IsDone)
                 yield return h;
         }
-
+        //Comprobara que cada handle haya podido cargarse
         foreach (var h in handles)
         {
             if (h.Status == AsyncOperationStatus.Succeeded)
